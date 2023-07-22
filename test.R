@@ -320,7 +320,7 @@ plot_generator <- function(percentiles_data = NULL){
 
 # Define UI --------------------------------------------------------------------
 ui <- fluidPage(
-  titlePanel("Percentile Plot Creator"),
+  titlePanel("Creador de Gráfico de Percentiles (FBref)"),
   sidebarLayout(
     sidebarPanel(
       # Select League
@@ -340,7 +340,7 @@ ui <- fluidPage(
                   selected = "-")
     ),
     mainPanel(
-      h3("Percentile Plot (LMI):"),
+      h4("\n Tiempo de espera una vez seleccionado el jugador: 1 a 2 minutos"),
       plotOutput("percentilePlot", height = "2100px", width = "2100px")
     )
   )
