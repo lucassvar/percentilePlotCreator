@@ -1,0 +1,13 @@
+name: PercentilesPlotLMI
+title: PercentilesPlotLMI
+username:
+account: lucasvarela
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9493635
+bundleId: 7486065
+url: https://lucasvarela.shinyapps.io/PercentilesPlotLMI/
+when: 1690046966.43595
+lastSyncTime: 1690046966.43595
+asMultiple: FALSE
+asStatic: FALSE
