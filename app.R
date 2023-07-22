@@ -110,13 +110,19 @@ plot_generator <- function(percentiles_data = NULL){
       StatGroup == "Passing" ~ 2,
       StatGroup == "Possession" ~ 3,
       StatGroup == "Shooting" ~ 4
+    ),
+    StatGroup = case_when(
+      StatGroup == "Defense" ~ "Defensa",
+      StatGroup == "Passing" ~ "Pases",
+      StatGroup == "Possession" ~ "Posesión",
+      StatGroup == "Shooting" ~ "Tiros"
     ))
     
     # Group colors for the plot
-    group.colors <- c("Defense" = "#C86742",
-                      "Passing" = "#84B86F",
-                      "Possession" = "#E3AE2E",
-                      "Shooting" = "#6F78B3")
+    group.colors <- c("Defensa" = "#C86742",
+                      "Pases" = "#84B86F",
+                      "Posesión" = "#E3AE2E",
+                      "Tiros" = "#6F78B3")
     
     
   } else if (tail(names(sort(table(percentiles_data$Versus))), 1)  ==  "Goalkeepers") {
@@ -191,17 +197,41 @@ plot_generator <- function(percentiles_data = NULL){
       StatGroup == "Passing" ~ 2,
       StatGroup == "Goalkeeping" ~ 3,
       StatGroup == "Set Piece" ~ 4
+    ),
+    StatGroup = case_when(
+      StatGroup == "Defense" ~ "Defensa",
+      StatGroup == "Passing" ~ "Pases",
+      StatGroup == "Goalkeeping" ~ "Portero",
+      StatGroup == "Set Piece" ~ "Balón Parado"
     ))
     
     # Group colors for the plot
-    group.colors <- c("Defense" = "#C86742", "Passing" = "#84B86F",
-                      "Goalkeeping" = "#6F78B3", "Set Piece" = "#E3AE2E")
+    group.colors <- c("Defensa" = "#C86742",
+                      "Pases" = "#84B86F",
+                      "Portero" = "#662E9B",
+                      "Balón Parado" = "#FFC1CF")
   }
   
   
   # Get player's name and the position compared
   playername <- player_percentiles_data$Player[1]
   playerversus <- tail(names(sort(table(percentiles_data$Versus))), 1)
+  
+  
+  # Change the positions from English to Spanish
+  if (playerversus == "Forwards") {
+    playerversus <- "Delanteros"
+  } else if (playerversus == "Att Mid / Wingers") {
+    playerversus <- "Med. Ofensivos / Extremos"
+  } else if (playerversus == "Midfielders") {
+    playerversus <- "Mediocampistas"
+  } else if (playerversus == "Center Backs") {
+    playerversus <- "Defensas Centrales"
+  } else if (playerversus == "Fullbacks") {
+    playerversus <- "Laterales"
+  } else if (playerversus == "Goalkeepers") {
+    playerversus <- "Porteros"
+  }
   
   
   # Create the plot
@@ -253,8 +283,8 @@ plot_generator <- function(percentiles_data = NULL){
     # Add labels
     labs(
       title = (paste("\n", playername)),
-      subtitle = str_wrap(paste("\n", "Statistics comapred to ", playerversus, sep = ""), 70),
-      caption = "\n @blauds - @LaMediaInglesa\n https://github.com/blauerds\nSource: Opta via Fbref"
+      subtitle = str_wrap(paste("\n", "Estadísticas comparadas con: ", playerversus, sep = ""), 70),
+      caption = "\n @LaMediaInglesa\n @blauds - https://github.com/blauerds\nSource: Opta via Fbref"
     ) +
     
     # Add labels with the percentile values
