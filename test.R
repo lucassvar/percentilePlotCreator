@@ -283,7 +283,7 @@ plot_generator <- function(percentiles_data = NULL){
     # Add labels
     labs(
       title = (paste("\n", playername)),
-      subtitle = str_wrap(paste("\n", "Estadísticas comparadas con: ", playerversus, sep = ""), 70),
+      subtitle = str_wrap(paste("\n", "Estadísticas comparadas con ", playerversus, sep = ""), 70),
       caption = "\n @LaMediaInglesa\n @blauds - https://github.com/blauerds\nSource: Opta via Fbref"
     ) +
     
